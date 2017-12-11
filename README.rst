@@ -72,7 +72,7 @@ Deployment
 ----------
 
 The following details how to deploy this application.
-
+More details about this section will be provided in the near future ... stay tuned!
 
 
 

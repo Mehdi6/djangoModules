@@ -56,6 +56,7 @@ LOCAL_APPS = [
     # custom users app
     'django_modules.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'django_modules.home.apps.HomeConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

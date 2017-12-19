@@ -1,0 +1,43 @@
+.testimonial{
+    padding-right:30px ;
+}
+
+.pic > img{
+    border-radius: 50%;
+    float: left;
+    margin-right: 30px;
+    object-fit: cover;
+}
+
+.testimonial-review p{
+    color: #888888;
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+.testimonial-title{
+    color: #f69b37;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 1.6;
+}
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span{
+    background: #dc005a;
+}
+.owl-theme .owl-controls{
+    margin-top: 30px;
+}
+@media screen and (max-width: 767px){
+    .testimonial{
+        text-align: center;
+        padding: 0 15px;
+    }
+    .pic > img{
+        float: none;
+        margin: 0 0 10px 0;
+    }
+}

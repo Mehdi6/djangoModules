@@ -277,3 +277,5 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+
+ADMINS_EMAILS = ['webmaster@email.com', 'webmaster2@email.com']

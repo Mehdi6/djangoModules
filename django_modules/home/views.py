@@ -14,7 +14,10 @@ class HomeView(AjaxFormMixin, FormView):
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
+        
+        # Notify the webmaster that a user droped a message by email
         form.send_email()
+        form.save()
         return super().form_valid(form)
     
     def get_context_data(self, **kwargs):

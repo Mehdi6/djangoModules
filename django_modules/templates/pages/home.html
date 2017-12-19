@@ -55,8 +55,6 @@
     {{ block.super }}
     
     <!-- JS for Testimonials -->
-    
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
     <script>
     
@@ -88,14 +86,20 @@
                 error: handleFormError,
             })
         })
-
+        function resetForm($form) {
+            $form.find('input:text, input:password, input:file, select, textarea').val('');
+            $form.find('input:radio, input:checkbox')
+                .removeAttr('checked').removeAttr('selected');
+            }
         function handleFormSuccess(data, textStatus, jqXHR){
             console.log(data)
             console.log(textStatus)
             console.log(jqXHR)
-            $myForm.reset(); // reset form data
+            //$myForm.reset(); // reset form data
+            resetForm($myForm)
+            // A message to notify the user that the message has been successfuly submitted
+            
         }
-
         function handleFormError(jqXHR, textStatus, errorThrown){
             console.log(jqXHR)
             console.log(textStatus)

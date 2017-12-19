@@ -9,7 +9,7 @@ from .mixins import AjaxFormMixin
 class HomeView(AjaxFormMixin, FormView):
     template_name = 'pages/home.html'
     form_class = ContactForm
-    #success_url = None
+    success_url = '/'
     
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.

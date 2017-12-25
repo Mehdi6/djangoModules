@@ -14,9 +14,9 @@ urlpatterns = [
 
     # User management
     url(r'^users/', include('django_modules.users.urls', namespace='users')),
-    url(r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/', include('allauth.urls')), 
+    url(r'^store/', include('django_modules.store.urls')),
     url(r'^', include('django_modules.home.urls')),
-    
     # Your stuff: custom urls includes go here
 
 

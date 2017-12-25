@@ -1,0 +1,231 @@
+{% extends "store/base.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load static i18n %}
+
+{% block head_title %}{% trans "store" %}{% endblock %}
+{% block css %}
+    {{ block.super }}
+
+        <link href="{% static 'css/store/list-items.css' %}" rel="stylesheet">
+            
+{% endblock %}
+
+{% block main_store %}
+
+<div class="items-list-container">
+<div class="well well-sm row">
+    <strong class="col-sm-2">Category Title</strong>
+    <span class="col-sm-2"> 10001 results</span>
+    <form class="col-sm-3" action="/action_page.php">
+      <div class=" row">
+        <label class="col-sm-2">Price</label>
+        <div class="col-sm-3">
+            <input id="min-price" type="text" style="width:50px;" name="msg" placeholder="min">
+        </div>
+        <div class="col-sm-4">
+            <input id="max-price" type="text" style="width:50px;" name="msg" placeholder="max">
+        </div>
+        <button class="btn btn-primary btn-xs col-sm-2">Go</button>
+      </div>
+    </form>
+    <div class="form-group col-sm-3">
+      <select class="form-control" id="sel1">
+        <option>Price: high to low</option>
+        <option>Price: low to high</option>
+        <option>Most reviewed</option>
+        <option>Publication date</option>
+      </select>
+    </div>
+    
+    <div class="btn-group ">
+        <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+        </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+            class="glyphicon glyphicon-th"></span>Grid</a>
+    </div>
+</div>
+<div id="products" class="row list-group">
+    <div class="item  col-xs-4 col-lg-4">
+        <div class="thumbnail">
+            <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+            <div class="caption">
+                <h4 class="group inner list-group-item-heading">
+                    Product title</h4>
+                <h6 class="group inner list-group-item-heading">
+                    <small> by <strong> Apple </strong></small></h6>    
+                <p class="group inner list-group-item-text">
+                    Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                
+                <div class="row">
+                    <div class="item-rate col-xs-12 col-md-6">
+                        <div class="rateit" data-rateit-mode="font" data-rateit-step="0.1" data-rateit-value="2.333" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        <span >(10)</span>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <p class="lead">
+                            $21.000</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item  col-xs-4 col-lg-4">
+        <div class="thumbnail">
+            <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+            <div class="caption">
+                <h4 class="group inner list-group-item-heading">
+                    Product title</h4>
+                <p class="group inner list-group-item-text">
+                    Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                <div class="row">
+                <div class="item-rate col-xs-12 col-md-8">
+                        <div class="rateit" data-rateit-mode="font" data-rateit-step="0.1" data-rateit-value="2.333" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        <span >(10)</span>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <p class="lead">
+                            $21.000</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item  col-xs-4 col-lg-4">
+        <div class="thumbnail">
+            <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+            <div class="caption">
+                <h4 class="group inner list-group-item-heading">
+                    Product title</h4>
+                <p class="group inner list-group-item-text">
+                    Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                <div class="row">
+                <div class="item-rate col-xs-12 col-md-6">
+                        <div class="rateit" data-rateit-mode="font" data-rateit-step="0.1" data-rateit-value="2.333" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        <span >(10)</span>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <p class="lead">
+                            $21.000</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item  col-xs-4 col-lg-4">
+        <div class="thumbnail">
+            <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+            <div class="caption">
+                <h4 class="group inner list-group-item-heading">
+                    Product title</h4>
+                <p class="group inner list-group-item-text">
+                    Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                <div class="row">
+                <div class="item-rate col-xs-12 col-md-6">
+                        <div class="rateit" data-rateit-mode="font" data-rateit-step="0.1" data-rateit-value="2.333" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        <span >(10)</span>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <p class="lead">
+                            $21.000</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item  col-xs-4 col-lg-4">
+        <div class="thumbnail">
+            <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+            <div class="caption">
+                <h4 class="group inner list-group-item-heading">
+                    Product title</h4>
+                <p class="group inner list-group-item-text">
+                    Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                <div class="row">
+                <div class="item-rate col-xs-12 col-md-6">
+                        <div class="rateit" data-rateit-mode="font" data-rateit-step="0.1" data-rateit-value="2.333" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        <span >(10)</span>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <p class="lead">
+                            $21.000</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item  col-xs-4 col-lg-4">
+        <div class="thumbnail">
+            <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+            <div class="caption">
+                <h4 class="group inner list-group-item-heading">
+                    Product title</h4>
+                <p class="group inner list-group-item-text">
+                    Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                <div class="row">
+                <div class="item-rate col-xs-12 col-md-6">
+                        <div class="rateit" data-rateit-mode="font" data-rateit-step="0.1" data-rateit-value="2.333" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        <span >(10)</span>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <p class="lead">
+                            $21.000</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+</div>
+<div class="pagination-container">
+<nav aria-label="..." >
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">4</a></li>
+    <li class="page-item"><a class="page-link" href="#">5</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+    {{ block.super }}
+          <script src="{% static 'js/store/store.js' %}"></script>
+          
+{% endblock %}

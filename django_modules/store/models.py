@@ -11,7 +11,6 @@ def validate_rate(value):
             params={'value': value},
         )
 
-
 class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
@@ -33,6 +32,7 @@ class Brand(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50)
     parent_cat = models.ForeignKey('Category', null=True, blank=True)
+    slug = models.SlugField(max_length=50, default="SLUG DEFAULT")
     
     def __str__(self):
         return self.name
@@ -50,5 +50,6 @@ class Review(models.Model):
 class ProductMedia(models.Model):
     image = models.ImageField(upload_to='products')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    isPrimary = models.BooleanField()
 
     

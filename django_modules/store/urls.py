@@ -19,6 +19,13 @@ urlpatterns = [
         name='store'
     ),
     url(
+        regex=r'^item/(?P<slug>[\w-]*)$',
+        #view=views.HomeView.as_view(),
+        #view=TemplateView.as_view(template_name='store/store.html'),
+        view=views.ItemStoreView.as_view(),
+        name='item'
+    ),
+    url(
         regex=r'^ajax/(?P<category>[\w-]*)$',
         #view=views.HomeView.as_view(),
         #view=TemplateView.as_view(template_name='store/store.html'),

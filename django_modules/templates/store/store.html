@@ -28,11 +28,12 @@
         <button class="btn btn-primary btn-xs col-sm-2 filter-query">Go</button>
       </div>
     <div class="form-group col-sm-3">
-      <select class="form-control" id="sel1">
-        <option>Price: high to low</option>
-        <option>Price: low to high</option>
-        <option>Most reviewed</option>
-        <option>Publication date</option>
+      <select class="form-control" id="sortby">
+        <option value="best_match">BestMatch</option>
+        <option value="price_dsc">Price: high to low</option>
+        <option value="price_asc">Price: low to high</option>
+        <option value="rate">Most reviewed</option>
+        <option value="publication_date">Publication date</option>
       </select>
     </div>
     
@@ -43,13 +44,13 @@
     </div>
 </div>
 <div id="products" class="row list-group">
-    {% for product in list_product %}
+    {% for product in pagination.object_list %}
     <div class="item  col-xs-4 col-lg-4">
         <div class="thumbnail">
             <img class="group list-group-image" src="{{ product.media.image.url }}" alt="" />
             <div class="caption">
                 <h4 class="group inner list-group-item-heading">
-                    {{ product.product.name |slice:":100" }}</h4>
+                    <a href="{% url 'item' slug=product.product.slug %}">{{ product.product.name |slice:":100" }}</a></h4>
                 <h6 class="group inner list-group-item-heading">
                     <small> by <strong> {{ product.product.brand }} </strong></small></h6>    
                 <p class="group inner list-group-item-text">
@@ -77,18 +78,20 @@
 <div class="pagination-container">
 <nav aria-label="..." >
   <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    <li class="page-item {%if not pagination.has_previous %} disabled {% endif %}">
+      <a class="page-link" href="?page={{pagination.number|add:'-1'}}" tabindex="-1">Previous</a>
     </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active">
-      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">4</a></li>
-    <li class="page-item"><a class="page-link" href="#">5</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
+    {% if pagination_ext.remain_left %}
+        <li class="page-item"> <a class="page-link">...</a> </li>
+    {% endif %}
+    {% for p in pagination_ext.ex_range %}
+        <li class="page-item {% if pagination.number == p %} active {% endif %}"><a class="page-link" href="?page={{p}}">{{p}}</a></li>
+    {% endfor %}
+    {% if pagination_ext.remain_right %}
+        <li class="page-item"> <a class="page-link">...</a>  </li>
+    {% endif %}
+    <li class="page-item {%if not pagination.has_next %} disabled {% endif %}">
+      <a class="page-link" href="?page={{pagination.number|add:'1'}}" >Next</a> 
     </li>
   </ul>
 </nav>
@@ -102,26 +105,38 @@
           <script src="{% static 'js/store/store.js' %}"></script>
           
     <script>
+        $("#sortby").val('{{sortType}}');
+        
         var context = {}
         var query = "{{query}}";
         if( query )
-            context = Object.assign(context, {'q':"{{query}}" });
+            context['q'] = "{{query}}";
+                    
+        var minPrice = $("input[name='minPrice']").val();
+        var maxPrice = $("input[name='maxPrice']").val();
+        
+        if (minPrice)
+            context['minPrice'] = minPrice;
+        if (maxPrice)
+            context['maxPrice'] = maxPrice;
+        
+        context['SortType'] = $("#sortby").val();
         
         // sending search and filter queries using jQuery
-        //You can use any jQuery/JavaScript event that you'd like to trigger the call
-        $('.filter-query').click(function() {
-        
-            var new_params = {};
-            
+        $('.filter-query').click(function() { 
             var minPrice = $("input[name='minPrice']").val();
             var maxPrice = $("input[name='maxPrice']").val();
             
             if (minPrice)
-                new_params['minPrice'] = minPrice;
+                context['minPrice'] = minPrice;
             if (maxPrice)
-                new_params['maxPrice'] = maxPrice;
-             
-            context = Object.assign( context, new_params);
+                context['maxPrice'] = maxPrice;
+            
+            window.location.replace("{% url 'store' category=category %}?"+$.param(context));
+        });
+        
+        $("#sortby").change(function(){
+            context['SortType'] = $("#sortby").val();
             window.location.replace("{% url 'store' category=category %}?"+$.param(context));
         });
     </script>

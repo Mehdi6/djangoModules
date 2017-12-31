@@ -18,7 +18,8 @@ class Product(models.Model):
     instock = models.BooleanField()
     brand = models.ForeignKey('Brand', on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-
+    slug = models.SlugField(max_length=200, default='SLUG DEFAULT')
+    
     def __str__(self):
         return self.name
         

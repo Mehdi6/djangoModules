@@ -22,36 +22,34 @@
                     <div class="product col-sm-7 col-md-7 service-image-left">
                     
                         <center>
-                            <img id="item-display" src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt=""></img>
+                            <img id="item-display" src="{{media.primary.image.url}}" alt=""></img>
                         </center>
                     </div>
                     
                     <div class="container service1-items col-sm-2 col-md-2 pull-left">
                         <center>
-                            
-                            <a id="item-2" class="service1-item">
-                                <img src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt=""></img>
+                            <a id="item-1" class="service1-item">
+                                <img src="{{media.primary.image.url}}" alt=""></img>
                             </a>
-                            <a id="item-3" class="service1-item">
-                                <img src="http://www.corsair.com/~/media/tlc/audio/void-pro/void_pro_wireless_white_01.png" alt=""></img>
+                            {% for sec_media in media.secondary %}
+                            <a id="item-{{ forloop.counter|add:'1' }}" class="service1-item">
+                                <img src="{{sec_media.image.url}}" alt=""></img>
                             </a>
-                            <a id="item-4" class="service1-item">
-                                <img src="http://www.corsair.com/~/media/tlc/audio/void-pro/void_pro_wireless_se_01.png" alt=""></img>
-                            </a>
+                            {% endfor %}
                         </center>
                     </div>
                 </div>
     
                 <div class="col-md-5">
-                    <div class="product-title">Corsair GS600 600 Watt PSU</div>
-                    <div class="product-brand">by <strong>Apple</strong></div>
-                    <div class="product-desc">The Corsair Gaming Series GS600 is the ideal price/performance choice for mid-spec gaming PC</div>
+                    <div class="product-title">{{product.name}}</div>
+                    <div class="product-brand">by <strong>{{product.brand}}</strong></div>
+                    <div class="product-desc">{{product.description}}</div>
                     <div class="product-rating">
                         <span class="rateit" data-rateit-step="0.1" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true"></span> <small>(10)</small>
                     </div>
                     <hr>
-                    <div class="product-price">$ 1234.00</div>
-                    <div class="product-stock">In Stock</div>
+                    <div class="product-price">$ {{product.price}}</div>
+                    <div class="product-stock">{% if product.instock %} In Stock {% else %} Stock Empty {% endif %}</div>
                     <hr>
                     <div class="btn-group cart">
                         <button type="button" class="btn btn-success">
